@@ -65,10 +65,10 @@ constexpr uint64_t htonll_impl(uint64_t val)
 }
 constexpr uint64_t ntohll_impl(uint64_t val) { return htonll_impl(val); }
 
-static double ntp_to_seconds(uint64_t ntpVal)
+static double ntp_to_seconds(uint64_t ntp_val)
 {
-    uint32_t sec  = (ntpVal >> 32) & 0xFFFFFFFFULL;
-    uint32_t frac = ntpVal & 0xFFFFFFFFULL;
+    uint32_t sec  = (ntp_val >> 32) & 0xFFFFFFFFULL;
+    uint32_t frac = ntp_val & 0xFFFFFFFFULL;
     double fraction = static_cast<double>(frac) / static_cast<double>(1ULL << 32);
     double total    = static_cast<double>(sec) + fraction - static_cast<double>(NTP_TIMESTAMP_DELTA);
     return total;
